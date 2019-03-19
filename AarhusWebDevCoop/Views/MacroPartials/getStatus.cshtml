@@ -1,0 +1,8 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@using Umbraco.Web
+
+@{
+    var SelectionId = Model.Content.GetPropertyValue<Int32>("projectStatus");
+    var RadioTextValue = umbraco.library.GetPreValueAsString(SelectionId);
+}
+<p>@RadioTextValue</p>

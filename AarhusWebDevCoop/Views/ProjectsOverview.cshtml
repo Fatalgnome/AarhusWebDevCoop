@@ -1,0 +1,8 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ProjectsOverview>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+	Layout = "Master.cshtml";
+}
+@Umbraco.Field("projectsTitle")
+@Umbraco.Field("projectsBodyText")
+@Umbraco.RenderMacro("listAllProjects")

@@ -1,0 +1,23 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@using Umbraco.Web
+
+@{ 
+    var selection = Model.Content.Children
+                    .Where(x => x.IsVisible()).OrderByDescending(x => x.CreateDate).ToArray();
+}
+
+@if (selection.Length > 0)
+{
+    <ul>
+        @foreach(var item in selection)
+        {
+            var isProtected = umbraco.library.IsProtected(item.Id, item.Path);
+            var loginAccess= isProtected && umbraco.library.HasAccess(item.Id, item.Path);
+
+            if(!isProtected || loginAccess)
+            {
+                <li><a href="@item.Url">@item.Name</a></li>
+            }
+        }
+    </ul>
+}
